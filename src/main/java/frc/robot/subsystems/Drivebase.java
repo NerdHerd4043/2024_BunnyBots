@@ -16,7 +16,7 @@ public class Drivebase extends SubsystemBase{
     private final double MAX_VOLTAGE = 12;
 
     private SwerveModule frontLeft = new SwerveModule(SwerveModules.frontLeft, MAX_VELOCITY, MAX_VOLTAGE);
-    private SwerveModule frontRight = new SwerveModule(SwerveModules.frontRight, MAX_ANGULAR_VELOCITY, MAX_VOLTAGE);
+    private SwerveModule frontRight = new SwerveModule(SwerveModules.frontRight, MAX_VELOCITY, MAX_VOLTAGE);
 
-    
+
 }
