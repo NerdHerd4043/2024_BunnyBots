@@ -4,9 +4,6 @@
 
 package frc.robot;
 
-import java.sql.Driver;
-import java.sql.DriverAction;
-
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.XboxController;
