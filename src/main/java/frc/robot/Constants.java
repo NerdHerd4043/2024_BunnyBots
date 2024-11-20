@@ -24,12 +24,13 @@ public class Constants {
     }
 
     public static final class ModuleLocations {
-        public static final double dist = Units.inchesToMeters(9.25);
-        public static final double robotRaduius = Math.sqrt(2 * Math.pow(dist, 2));
-        public static final Translation2d frontLeft = new Translation2d(dist, dist);
-        public static final Translation2d frontRight = new Translation2d(dist, -dist);
-        public static final Translation2d backLeft = new Translation2d(-dist, dist);
-        public static final Translation2d backRight = new Translation2d(-dist, -dist);
+        public static final double dist1 = Units.inchesToMeters(13.25);
+        public static final double dist2 = Units.inchesToMeters(11.5);
+        public static final double robotRaduius = Math.sqrt(Math.pow(dist2, 2) * Math.pow(dist1, 2));
+        public static final Translation2d frontLeft = new Translation2d(dist1, dist2);
+        public static final Translation2d frontRight = new Translation2d(dist1, -dist2);
+        public static final Translation2d backLeft = new Translation2d(-dist1, dist2);
+        public static final Translation2d backRight = new Translation2d(-dist1, -dist2);
     }
     }
 
