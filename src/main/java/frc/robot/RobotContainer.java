@@ -80,7 +80,7 @@ public class RobotContainer {
   private void configureBindings() {
     // Gyro Reset
     c_driveStick.povUp().onTrue(Commands.runOnce(gyro::reset));
-    
+
   }
 
 }
