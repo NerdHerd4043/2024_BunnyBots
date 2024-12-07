@@ -5,36 +5,37 @@ import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.IntakeConstants;
+import frc.robot.Constants.ManipulatorConstants;
 
 public class Manipulator extends SubsystemBase {
-    private CANSparkMax subIntakeMotor = new CANSparkMax(IntakeConstants.subMotorID, MotorType.kBrushless);
-    private CANSparkMax mainIntaketMotor = new CANSparkMax(IntakeConstants.mainMotorID, MotorType.kBrushless);
-    private CANSparkMax indexMotor = new CANSparkMax(IntakeConstants.indexMotorID, MotorType.kBrushless);
+    private CANSparkMax subManipulatorMotor = new CANSparkMax(ManipulatorConstants.subMotorID, MotorType.kBrushless);
+    private CANSparkMax mainManipulatorMotor = new CANSparkMax(ManipulatorConstants.mainMotorID, MotorType.kBrushless);
+    private CANSparkMax indexMotor = new CANSparkMax(ManipulatorConstants.indexMotorID, MotorType.kBrushless);
 
     public Manipulator() {
-        subIntakeMotor.restoreFactoryDefaults();
-        mainIntaketMotor.restoreFactoryDefaults();
+        subManipulatorMotor.restoreFactoryDefaults();
+        mainManipulatorMotor.restoreFactoryDefaults();
         indexMotor.restoreFactoryDefaults();
 
-        subIntakeMotor.setIdleMode(IdleMode.kCoast);
-        mainIntaketMotor.setIdleMode(IdleMode.kBrake);
+        subManipulatorMotor.setIdleMode(IdleMode.kCoast);
+        mainManipulatorMotor.setIdleMode(IdleMode.kBrake);
         indexMotor.setIdleMode(IdleMode.kBrake);
 
-        subIntakeMotor.setSmartCurrentLimit(IntakeConstants.manipulatorMotorCurrentLimit);
-        mainIntaketMotor.setSmartCurrentLimit(IntakeConstants.manipulatorMotorCurrentLimit);
-        indexMotor.setSmartCurrentLimit(IntakeConstants.manipulatorMotorCurrentLimit);
+        subManipulatorMotor.setSmartCurrentLimit(ManipulatorConstants.manipulatorMotorCurrentLimit);
+        mainManipulatorMotor.setSmartCurrentLimit(ManipulatorConstants.manipulatorMotorCurrentLimit);
+        indexMotor.setSmartCurrentLimit(ManipulatorConstants.manipulatorMotorCurrentLimit);
     }
 
-    public void runIntake(double subIntakeMotorSpeed, double mainIntakeMotorSpeed, double indexMotorSpeed) {
-        subIntakeMotor.set(subIntakeMotorSpeed);
-        mainIntaketMotor.set(mainIntakeMotorSpeed);
+    public void runManipulator(double subManipulatorMotorSpeed, double mainManipulatorMotorSpeed,
+            double indexMotorSpeed) {
+        subManipulatorMotor.set(subManipulatorMotorSpeed);
+        mainManipulatorMotor.set(mainManipulatorMotorSpeed);
         indexMotor.set(indexMotorSpeed);
     }
 
-    public void stopIntake() {
-        subIntakeMotor.stopMotor();
-        mainIntaketMotor.stopMotor();
+    public void stopManipulator() {
+        subManipulatorMotor.stopMotor();
+        mainManipulatorMotor.stopMotor();
         indexMotor.stopMotor();
     }
 

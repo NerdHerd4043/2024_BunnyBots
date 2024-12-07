@@ -4,19 +4,27 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Manipulator;
 
 public class RunManipulator extends Command {
-    public final Manipulator intake;
-    public final double subIntakeMotorSpeed;
-    public final double mainIntakeMotorSpeed;
+    public final Manipulator manipulator;
+    public final double subMotorSpeed;
+    public final double mainMotorSpeed;
     public final double indexMotorSpeed;
+    public final boolean beamBreak;
 
-    public RunManipulator(Manipulator intake, double subIntakeMotorSpeed, double mainIntakeMotorSpeed,
-            double indexMotorSpeed) {
-        this.intake = intake;
-        this.subIntakeMotorSpeed = subIntakeMotorSpeed;
-        this.mainIntakeMotorSpeed = mainIntakeMotorSpeed;
-        this.indexMotorSpeed = indexMotorSpeed;
+    public RunManipulator(Manipulator manipulator, double subMotorSpeed, double mainMotorSpeed,
+            double indexMotorSpeed, Boolean beamBreak) {
+        this.manipulator = manipulator;
+        this.subMotorSpeed = subMotorSpeed;
+        this.mainMotorSpeed = mainMotorSpeed;
+        this.beamBreak = beamBreak;
 
-        addRequirements(this.intake);
+        if (beamBreak = true) {
+            this.indexMotorSpeed = indexMotorSpeed;
+        }
+        else {
+            this.indexMotorSpeed = 0;
+        }
+
+        addRequirements(this.manipulator);
     }
 
     @Override
@@ -25,12 +33,12 @@ public class RunManipulator extends Command {
 
     @Override
     public void execute() {
-        intake.runIntake(subIntakeMotorSpeed, mainIntakeMotorSpeed, indexMotorSpeed);
+        manipulator.runManipulator(subMotorSpeed, mainMotorSpeed, indexMotorSpeed);
     }
 
     @Override
     public void end(boolean interrupted) {
-        intake.stopIntake();
+        manipulator.stopManipulator();
     }
 
     @Override

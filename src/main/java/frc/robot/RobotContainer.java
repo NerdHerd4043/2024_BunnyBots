@@ -6,12 +6,13 @@ package frc.robot;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.Constants.IntakeConstants;
+import frc.robot.Constants.ManipulatorConstants;
 import frc.robot.commands.Drive;
 import frc.robot.commands.RunManipulator;
 import frc.robot.subsystems.Drivebase;
@@ -19,10 +20,11 @@ import frc.robot.subsystems.Manipulator;
 
 public class RobotContainer {
   private final AHRS gyro = new AHRS();
+  private final DigitalInput beamBreak = new DigitalInput(0);
 
   private final Drivebase drivebase = new Drivebase(gyro);
 
-  private final Manipulator intake = new Manipulator();
+  private final Manipulator manipulator = new Manipulator();
 
   private static XboxController driveStick = new XboxController(0);
   private static CommandXboxController c_driveStick = new CommandXboxController(0);
@@ -44,7 +46,7 @@ public class RobotContainer {
 
   private double[] getXY() {
     double[] xy = new double[2];
-    xy[0] = deadband(driveStick.getLeftX(), DriveConstants.deadband);
+    xy[1] = deadband(driveStick.getLeftX(), DriveConstants.deadband);
     xy[0] = deadband(driveStick.getLeftY(), DriveConstants.deadband);
     return xy;
   }
@@ -67,7 +69,7 @@ public class RobotContainer {
   }
 
   private double scaleRotationAxis(double input) {
-    return deadband(squared(input), DriveConstants.deadband) * drivebase.getMaxAngleVelocity() * -0.6;
+    return deadband(squared(input), DriveConstants.deadband) * drivebase.getMaxAngleVelocity() * 0.6;
   }
 
   private double squared(double input) {
@@ -82,14 +84,24 @@ public class RobotContainer {
     }
   }
 
+  private boolean getBeamBreak() {
+    return !beamBreak.get();
+  }
+
   private void configureBindings() {
     // Gyro Reset
     c_driveStick.povUp().onTrue(Commands.runOnce(gyro::reset));
 
-    // Run Intake
-    c_driveStick.rightTrigger().whileTrue(new RunManipulator(
-        intake, IntakeConstants.subMotorSpeed, IntakeConstants.mainMotorSpeed, IntakeConstants.indexMotorSpeed));
-    
+    // Intake
+    c_driveStick.rightTrigger().whileTrue(
+        new RunManipulator(
+            manipulator, ManipulatorConstants.subMotorSpeed, ManipulatorConstants.mainMotorSpeed,
+            ManipulatorConstants.indexMotorSpeed, getBeamBreak()));
+
+    // Output
+    c_driveStick.a().whileTrue(
+        new RunManipulator(
+            manipulator, 0, ManipulatorConstants.mainMotorSpeed, -ManipulatorConstants.indexMotorSpeed, true));
   }
 
 }
