@@ -11,13 +11,18 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.IntakeConstants;
 import frc.robot.commands.Drive;
+import frc.robot.commands.RunManipulator;
 import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.Manipulator;
 
 public class RobotContainer {
   private final AHRS gyro = new AHRS();
 
   private final Drivebase drivebase = new Drivebase(gyro);
+
+  private final Manipulator intake = new Manipulator();
 
   private static XboxController driveStick = new XboxController(0);
   private static CommandXboxController c_driveStick = new CommandXboxController(0);
@@ -81,6 +86,10 @@ public class RobotContainer {
     // Gyro Reset
     c_driveStick.povUp().onTrue(Commands.runOnce(gyro::reset));
 
+    // Run Intake
+    c_driveStick.rightTrigger().whileTrue(new RunManipulator(
+        intake, IntakeConstants.subMotorSpeed, IntakeConstants.mainMotorSpeed, IntakeConstants.indexMotorSpeed));
+    
   }
 
 }

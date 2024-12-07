@@ -16,7 +16,7 @@ public class Constants {
             public static final double d = 0.0015; // Error's rate of change
         }
 
-        public static final class SwerveModules { // TODO Match IDs
+        public static final class SwerveModules {
             public static final SwerveModuleConfig frontRight = new SwerveModuleConfig(1, 11, 21, false);
             public static final SwerveModuleConfig frontLeft = new SwerveModuleConfig(2, 12, 22, true);
             public static final SwerveModuleConfig backLeft = new SwerveModuleConfig(3, 13, 23, false);
@@ -38,11 +38,16 @@ public class Constants {
     }
 
     public static final class IntakeConstants {
-        public static final int subIntakeMotorID = 5;
-        public static final int mainIntakeMotorID = 6;
+        public static final int subMotorID = 5;
+        public static final int mainMotorID = 6;
         public static final int indexMotorID = 7;
 
+        public static final double subMotorSpeed = 0.5;
+        public static final double mainMotorSpeed = 0.5;
+        public static final double indexMotorSpeed = 0.5;
+
         public static final int manipulatorMotorCurrentLimit = 20;
+
     }
 
 }

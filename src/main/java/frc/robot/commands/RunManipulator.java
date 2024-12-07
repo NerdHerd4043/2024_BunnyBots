@@ -1,15 +1,16 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Manipulator;
 
-public class RunIntake extends Command {
-    public final Intake intake;
+public class RunManipulator extends Command {
+    public final Manipulator intake;
     public final double subIntakeMotorSpeed;
     public final double mainIntakeMotorSpeed;
     public final double indexMotorSpeed;
 
-    public RunIntake(Intake intake, double subIntakeMotorSpeed, double mainIntakeMotorSpeed, double indexMotorSpeed) {
+    public RunManipulator(Manipulator intake, double subIntakeMotorSpeed, double mainIntakeMotorSpeed,
+            double indexMotorSpeed) {
         this.intake = intake;
         this.subIntakeMotorSpeed = subIntakeMotorSpeed;
         this.mainIntakeMotorSpeed = mainIntakeMotorSpeed;
