@@ -37,10 +37,11 @@ public class RobotContainer {
     return Commands.print("No autonomous command configured");
   }
 
+  // Yes, this is correct lol
   private double[] getXY() {
     double[] xy = new double[2];
-    xy[0] = deadband(driveStick.getLeftX(), DriveConstants.deadband);
-    xy[1] = deadband(driveStick.getLeftY(), DriveConstants.deadband);
+    xy[1] = deadband(driveStick.getLeftX(), DriveConstants.deadband);
+    xy[0] = deadband(driveStick.getLeftY(), DriveConstants.deadband);
     return xy;
   }
 
@@ -62,7 +63,7 @@ public class RobotContainer {
   }
 
   private double scaleRotationAxis(double input) {
-    return deadband(squared(input), DriveConstants.deadband) * drivebase.getMaxAngleVelocity() * -0.6;
+    return deadband(squared(input), DriveConstants.deadband) * drivebase.getMaxAngleVelocity() * 0.6;
   }
 
   private double squared(double input) {
