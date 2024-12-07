@@ -19,8 +19,7 @@ public class RunManipulator extends Command {
 
         if (beamBreak = true) {
             this.indexMotorSpeed = indexMotorSpeed;
-        }
-        else {
+        } else {
             this.indexMotorSpeed = 0;
         }
 
