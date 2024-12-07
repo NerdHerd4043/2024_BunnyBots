@@ -6,7 +6,6 @@ package frc.robot;
 
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -20,8 +19,7 @@ import frc.robot.subsystems.Manipulator;
 
 public class RobotContainer {
   private final AHRS gyro = new AHRS();
-  private final DigitalInput beamBreak = new DigitalInput(0);
-
+  
   private final Drivebase drivebase = new Drivebase(gyro);
 
   private final Manipulator manipulator = new Manipulator();
@@ -84,10 +82,6 @@ public class RobotContainer {
     }
   }
 
-  private boolean getBeamBreak() {
-    return !beamBreak.get();
-  }
-
   private void configureBindings() {
     // Gyro Reset
     c_driveStick.povUp().onTrue(Commands.runOnce(gyro::reset));
@@ -96,12 +90,12 @@ public class RobotContainer {
     c_driveStick.rightTrigger().whileTrue(
         new RunManipulator(
             manipulator, ManipulatorConstants.subMotorSpeed, ManipulatorConstants.mainMotorSpeed,
-            ManipulatorConstants.indexMotorSpeed, getBeamBreak()));
+            ManipulatorConstants.indexMotorSpeed));
 
     // Output
     c_driveStick.a().whileTrue(
         new RunManipulator(
-            manipulator, 0, ManipulatorConstants.mainMotorSpeed, -ManipulatorConstants.indexMotorSpeed, true));
+            manipulator, 0, ManipulatorConstants.mainMotorSpeed, -ManipulatorConstants.indexMotorSpeed));
   }
 
 }
