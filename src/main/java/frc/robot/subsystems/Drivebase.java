@@ -73,7 +73,7 @@ public class Drivebase extends SubsystemBase {
 
     public void fieldOrientedDrive(double speedX, double speedY, double rot) {
         ChassisSpeeds speeds = ChassisSpeeds.fromFieldRelativeSpeeds(speedX, speedY, rot,
-                Rotation2d.fromDegrees(getFieldAngle()));
+                Rotation2d.fromDegrees(-getFieldAngle()));
         this.drive(speeds);
     }
 
