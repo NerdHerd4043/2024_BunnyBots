@@ -42,6 +42,11 @@ public class RobotContainer {
     return Commands.print("No autonomous command configured");
   }
 
+  public void resetGyro() {
+    gyro.reset();
+  }
+
+  // Yes, this is correct lol
   private double[] getXY() {
     double[] xy = new double[2];
     xy[1] = deadband(driveStick.getLeftX(), DriveConstants.deadband);
@@ -54,14 +59,14 @@ public class RobotContainer {
 
     // Convert to Polar coordinates
     double r = Math.sqrt(xy[0] * xy[0] + xy[1] * xy[1]);
-    double theta = Math.atan2(xy[1], xy[0]);
+    double theta = Math.atan2(xy[0], xy[1]);
 
     // Square radius and scale by max velocity
     r = r * r * drivebase.getMaxVelocity();
 
     // Convert to Cartesian coordinates
-    xy[0] = r * Math.cos(theta);
-    xy[1] = r * Math.sin(theta);
+    xy[1] = r * Math.cos(theta);
+    xy[0] = r * Math.sin(theta);
 
     return xy;
   }

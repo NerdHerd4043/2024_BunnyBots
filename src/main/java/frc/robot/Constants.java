@@ -16,11 +16,11 @@ public class Constants {
             public static final double d = 0.0015; // Error's rate of change
         }
 
-        public static final class SwerveModules {
-            public static final SwerveModuleConfig frontRight = new SwerveModuleConfig(1, 11, 21, false);
-            public static final SwerveModuleConfig frontLeft = new SwerveModuleConfig(2, 12, 22, true);
-            public static final SwerveModuleConfig backLeft = new SwerveModuleConfig(3, 13, 23, true);
-            public static final SwerveModuleConfig backRight = new SwerveModuleConfig(4, 14, 24, false);
+        public static final class SwerveModules { // TODO Match IDs
+            public static final SwerveModuleConfig frontRight = new SwerveModuleConfig(1, 11, 21, true);
+            public static final SwerveModuleConfig frontLeft = new SwerveModuleConfig(2, 12, 22, false);
+            public static final SwerveModuleConfig backLeft = new SwerveModuleConfig(3, 13, 23, false);
+            public static final SwerveModuleConfig backRight = new SwerveModuleConfig(4, 14, 24, true);
         }
 
         public static final class ModuleLocations {

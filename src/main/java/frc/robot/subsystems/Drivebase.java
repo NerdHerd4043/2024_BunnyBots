@@ -68,7 +68,7 @@ public class Drivebase extends SubsystemBase {
     }
 
     public double getFieldAngle() {
-        return gyro.getYaw();
+        return -gyro.getYaw();
     }
 
     public void fieldOrientedDrive(double speedX, double speedY, double rot) {

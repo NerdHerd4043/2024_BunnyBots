@@ -7,6 +7,7 @@ package cowlib;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -31,6 +32,10 @@ public class SwerveModule {
       double maxVelocity, double maxVoltage) {
     this.angleMotor = new CANSparkMax(angleMotorId, MotorType.kBrushless);
     this.speedMotor = new CANSparkMax(speedMotorId, MotorType.kBrushless);
+
+    this.speedMotor.setIdleMode(IdleMode.kBrake);
+    this.angleMotor.setIdleMode(IdleMode.kBrake);
+
     this.pidController = new PIDController(SwervePID.p, SwervePID.i, SwervePID.d);
     this.encoder = new CANcoder(encoderId);
     this.maxVelocity = maxVelocity;
