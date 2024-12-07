@@ -37,6 +37,10 @@ public class RobotContainer {
     return Commands.print("No autonomous command configured");
   }
 
+  public void resetGyro() {
+    gyro.reset();
+  }
+
   // Yes, this is correct lol
   private double[] getXY() {
     double[] xy = new double[2];
