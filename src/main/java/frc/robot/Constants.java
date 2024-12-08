@@ -42,7 +42,7 @@ public class Constants {
         public static final int mainMotorID = 6;
         public static final int indexMotorID = 7;
 
-        public static final double subMotorSpeed = 0.5;
+        public static final double subMotorSpeed = -0.5;
         public static final double mainMotorSpeed = 0.5;
         public static final double indexMotorSpeed = 0.5;
 

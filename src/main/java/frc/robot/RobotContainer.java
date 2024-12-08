@@ -19,7 +19,7 @@ import frc.robot.subsystems.Manipulator;
 
 public class RobotContainer {
   private final AHRS gyro = new AHRS();
-  
+
   private final Drivebase drivebase = new Drivebase(gyro);
 
   private final Manipulator manipulator = new Manipulator();
