@@ -9,18 +9,14 @@ public class RunManipulator extends Command {
     public final double mainMotorSpeed;
     public final double indexMotorSpeed;
 
+    public boolean beamBreak = getBeamBreak();
+
     public RunManipulator(Manipulator manipulator, double subMotorSpeed, double mainMotorSpeed,
             double indexMotorSpeed) {
         this.manipulator = manipulator;
         this.subMotorSpeed = subMotorSpeed;
         this.mainMotorSpeed = mainMotorSpeed;
-        boolean beamBreak = getBeamBreak();
-
-        if (beamBreak = true) {
-            this.indexMotorSpeed = indexMotorSpeed;
-        } else {
-            this.indexMotorSpeed = 0;
-        }
+        this.indexMotorSpeed = indexMotorSpeed;
 
         addRequirements(this.manipulator);
     }
@@ -29,13 +25,21 @@ public class RunManipulator extends Command {
         return manipulator.getBeamBreak();
     }
 
+    public double getIndexMotorSpeed() {
+        if (beamBreak = true) {
+            return this.indexMotorSpeed;
+        } else {
+            return 0;
+        }
+    }
+
     @Override
     public void initialize() {
     }
 
     @Override
     public void execute() {
-        manipulator.runManipulator(subMotorSpeed, mainMotorSpeed, indexMotorSpeed);
+        manipulator.runManipulator(subMotorSpeed, mainMotorSpeed, getIndexMotorSpeed());
     }
 
     @Override
