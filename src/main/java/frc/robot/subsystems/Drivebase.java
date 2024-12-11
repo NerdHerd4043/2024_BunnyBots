@@ -22,10 +22,8 @@ import frc.robot.Constants.DriveConstants.SwerveModules;
 
 public class Drivebase extends SubsystemBase {
 
-    private final double DRIVE_REDUCTION = 1.0 / 6.75; // This is the ratio of the number of teeth on the gear directly
-                                                       // connected to the drive motor to the teeth on the gear it's
-                                                       // rotating (Gear ratio). It's not a simple 1:3 or 1:2 or
-                                                       // anything.
+    private final double DRIVE_REDUCTION = 1.0 / 6.12; // Where to find drive reduction (for swerve):
+                                                       // (https://www.swervedrivespecialties.com/products/mk4i-swerve-module)
     private final double NEO_FREE_SPEED = 5820.0 / 60.0; // Get from website, divide by 60 since the number that the
                                                          // website gives is in rotations per minute and we want
                                                          // rotations per second.

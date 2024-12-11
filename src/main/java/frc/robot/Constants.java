@@ -44,7 +44,7 @@ public class Constants {
 
         public static final double subMotorSpeed = -0.5;
         public static final double mainMotorSpeed = 0.5;
-        public static final double indexMotorSpeed = 0.5;
+        public static final double indexMotorSpeed = 0.5 / 3.5; // Accounting for daimeter pulleys
 
         public static final int manipulatorMotorCurrentLimit = 20;
 
