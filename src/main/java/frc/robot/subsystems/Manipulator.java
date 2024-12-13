@@ -42,7 +42,7 @@ public class Manipulator extends SubsystemBase {
         indexMotor.stopMotor();
     }
 
-    public boolean getBeamBreak () {
+    public boolean getBeamBreak() {
         return !beamBreak.get();
     }
 

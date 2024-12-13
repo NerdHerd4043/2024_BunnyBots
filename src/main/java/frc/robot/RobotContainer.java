@@ -100,7 +100,7 @@ public class RobotContainer {
     // Output
     c_driveStick.rightTrigger().whileTrue(
         new RunManipulator(
-            manipulator, 0, ManipulatorConstants.mainMotorSpeed, -ManipulatorConstants.indexMotorSpeed));
+            manipulator, 0, ManipulatorConstants.mainMotorSpeed, 0));
   }
 
 }
