@@ -40,6 +40,10 @@ public class Manipulator extends SubsystemBase {
         indexMotor.stopMotor();
     }
 
+    public boolean getBeamBreak() {
+        return !beamBreak.get();
+    }
+
     @Override
     public void periodic() {
 
