@@ -22,9 +22,9 @@ public class Manipulator extends SubsystemBase {
         mainManipulatorMotor.setIdleMode(IdleMode.kBrake);
         indexMotor.setIdleMode(IdleMode.kBrake);
 
-        subManipulatorMotor.setSmartCurrentLimit(ManipulatorConstants.manipulatorMotorCurrentLimit);
-        mainManipulatorMotor.setSmartCurrentLimit(ManipulatorConstants.manipulatorMotorCurrentLimit);
-        indexMotor.setSmartCurrentLimit(ManipulatorConstants.manipulatorMotorCurrentLimit);
+        subManipulatorMotor.setSmartCurrentLimit(ManipulatorConstants.subManipulatorMotorCurrentLimit);
+        mainManipulatorMotor.setSmartCurrentLimit(ManipulatorConstants.mainManipulatorMotorCurrentLimit);
+        indexMotor.setSmartCurrentLimit(ManipulatorConstants.subManipulatorMotorCurrentLimit);
     }
 
     public void runManipulator(double subManipulatorMotorSpeed, double mainManipulatorMotorSpeed,
