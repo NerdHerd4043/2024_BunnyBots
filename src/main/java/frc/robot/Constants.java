@@ -44,7 +44,7 @@ public class Constants {
 
         public static final double subMotorSpeed = -0.5;
         public static final double mainMotorSpeed = 0.8;
-        public static final double indexMotorSpeed = 0.8 / 3;
+        public static final double indexMotorSpeed = 1;
 
         public static final int mainManipulatorMotorCurrentLimit = 30;
         public static final int subManipulatorMotorCurrentLimit = 20;

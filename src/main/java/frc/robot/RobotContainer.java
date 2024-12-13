@@ -95,15 +95,18 @@ public class RobotContainer {
     c_driveStick.a().whileTrue(
         new RunManipulator(
             manipulator, ManipulatorConstants.subMotorSpeed, ManipulatorConstants.mainMotorSpeed,
-            0));
+            ManipulatorConstants.indexMotorSpeed));
 
     // Output
     c_driveStick.rightTrigger().whileTrue(
         new RunManipulator(
-            manipulator, 0, ManipulatorConstants.mainMotorSpeed, -ManipulatorConstants.indexMotorSpeed));
-    
+            manipulator, 0, ManipulatorConstants.mainMotorSpeed, 0));
+
     // Reverse
-    c_driveStick.x().whileTrue(new RunManipulator(manipulator, -ManipulatorConstants.subMotorSpeed, -ManipulatorConstants.mainMotorSpeed, 0));
+    c_driveStick.x().whileTrue(
+        new RunManipulator(manipulator, -ManipulatorConstants.subMotorSpeed, -ManipulatorConstants.mainMotorSpeed, 0));
+
+    c_driveStick.y().whileTrue(new RunManipulator(manipulator, 0, 0, 1));
   }
 
 }
