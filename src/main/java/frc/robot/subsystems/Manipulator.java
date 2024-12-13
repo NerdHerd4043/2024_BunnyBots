@@ -13,8 +13,6 @@ public class Manipulator extends SubsystemBase {
     private CANSparkMax mainManipulatorMotor = new CANSparkMax(ManipulatorConstants.mainMotorID, MotorType.kBrushless);
     private CANSparkMax indexMotor = new CANSparkMax(ManipulatorConstants.indexMotorID, MotorType.kBrushless);
 
-    private DigitalInput beamBreak = new DigitalInput(0);
-
     public Manipulator() {
         subManipulatorMotor.restoreFactoryDefaults();
         mainManipulatorMotor.restoreFactoryDefaults();
@@ -40,10 +38,6 @@ public class Manipulator extends SubsystemBase {
         subManipulatorMotor.stopMotor();
         mainManipulatorMotor.stopMotor();
         indexMotor.stopMotor();
-    }
-
-    public boolean getBeamBreak () {
-        return !beamBreak.get();
     }
 
     @Override
