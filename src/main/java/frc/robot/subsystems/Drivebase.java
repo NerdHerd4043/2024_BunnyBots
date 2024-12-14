@@ -89,8 +89,6 @@ public class Drivebase extends SubsystemBase {
 
         this.gyro = gyro;
         odometry = new SwerveDriveOdometry(kinematics, gyro.getRotation2d(), getModulePositions());
-
-        SmartDashboard.putData("Feild", field);
     }
 
     public double getFieldAngle() {
@@ -166,13 +164,5 @@ public class Drivebase extends SubsystemBase {
         SmartDashboard.putNumber("y", y);
         SmartDashboard.putNumber("rot", rotation);
         field.setRobotPose(getRobotPose());
-
-        SmartDashboard.putNumber("module output", modules[0].getDriveOutput());
-
-        // This method will be called once per scheduler run
-        SmartDashboard.putNumber("FL Encoder", frontLeft.getEncoder());
-        SmartDashboard.putNumber("FR Encoder", frontRight.getEncoder());
-        SmartDashboard.putNumber("BR Encoder", backRight.getEncoder());
-        SmartDashboard.putNumber("BL Encoder", backLeft.getEncoder());
     }
 }

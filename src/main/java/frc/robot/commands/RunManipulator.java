@@ -28,7 +28,7 @@ public class RunManipulator extends Command {
     }
 
     public double getIndexMotorSpeed() {
-        if (beamBreak = true) {
+        if (beamBreak) {
             return this.indexMotorSpeed;
         } else {
             return 0;
