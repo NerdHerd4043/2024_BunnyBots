@@ -93,8 +93,10 @@ public class Drivebase extends SubsystemBase {
         this.driveSpeedChooser = new SendableChooser<>();
 
         this.driveSpeedChooser.setDefaultOption("Full Speed", 1.0);
+        this.driveSpeedChooser.addOption("Three-Quarter Speed", 0.75);
         this.driveSpeedChooser.addOption("Half Speed", 0.5);
         this.driveSpeedChooser.addOption("Quarter Speed", 0.25);
+        this.driveSpeedChooser.addOption("No Speed", 0.0);
 
         SmartDashboard.putData(this.driveSpeedChooser);
 
