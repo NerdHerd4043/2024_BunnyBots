@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.ManipulatorConstants;
+import frc.robot.commands.DefaultOutput;
 import frc.robot.commands.Drive;
 import frc.robot.commands.RunManipulator;
 import frc.robot.commands.LowAuto.LowAutoMove;
@@ -99,9 +100,13 @@ public class RobotContainer {
             ManipulatorConstants.indexMotorSpeed));
 
     // Output
-    c_driveStick.rightTrigger().whileTrue(
-        new RunManipulator(
-            manipulator, 0, ManipulatorConstants.mainMotorSpeed, -0.1));
+    // c_driveStick.rightTrigger().whileTrue(
+    // new RunManipulator(
+    // manipulator, 0, ManipulatorConstants.mainMotorSpeed, -0.1));
+
+    manipulator.setDefaultCommand(new DefaultOutput(manipulator,
+        () -> c_driveStick.getRightTriggerAxis(),
+        () -> c_driveStick.getRightTriggerAxis()));
 
     // Reverse
     c_driveStick.x().whileTrue(
