@@ -33,4 +33,3 @@ public class LowAutoMove extends Command {
         return Timer.getFPGATimestamp() >= this.startTime + 8;
     }
 }
-

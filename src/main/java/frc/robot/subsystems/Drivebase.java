@@ -14,6 +14,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.networktables.BooleanEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
@@ -79,6 +80,8 @@ public class Drivebase extends SubsystemBase {
                                                                                       // direction
     private SlewRateLimiter slewRateY = new SlewRateLimiter(DriveConstants.slewRate);
 
+    private SendableChooser<Double> driveSpeedChooser = new SendableChooser<>();
+
     private BooleanEntry fieldOrientedEntry; // What do?
 
     // Creates a new drivebase
@@ -87,10 +90,18 @@ public class Drivebase extends SubsystemBase {
         var table = inst.getTable("SmartDashboard");
         this.fieldOrientedEntry = table.getBooleanTopic("Field Oriented").getEntry(true);
 
+        this.driveSpeedChooser = new SendableChooser<>();
+
+        this.driveSpeedChooser.setDefaultOption("Full Speed", 1.0);
+        this.driveSpeedChooser.addOption("Three-Quarter Speed", 0.75);
+        this.driveSpeedChooser.addOption("Half Speed", 0.5);
+        this.driveSpeedChooser.addOption("Quarter Speed", 0.25);
+        this.driveSpeedChooser.addOption("No Speed", 0.0);
+
+        SmartDashboard.putData(this.driveSpeedChooser);
+
         this.gyro = gyro;
         odometry = new SwerveDriveOdometry(kinematics, gyro.getRotation2d(), getModulePositions());
-
-        SmartDashboard.putData("Feild", field);
     }
 
     public double getFieldAngle() {
@@ -123,7 +134,7 @@ public class Drivebase extends SubsystemBase {
     private void drive(ChassisSpeeds speeds) {
         SwerveModuleState[] moduleStates = kinematics.toSwerveModuleStates(speeds);
 
-        SwerveDriveKinematics.desaturateWheelSpeeds(moduleStates, MAX_VELOCITY);
+        SwerveDriveKinematics.desaturateWheelSpeeds(moduleStates, MAX_VELOCITY * getRobotSpeedRatio());
 
         this.frontLeft.drive(moduleStates[0]);
         this.frontRight.drive(moduleStates[1]);
@@ -151,6 +162,10 @@ public class Drivebase extends SubsystemBase {
         return positions;
     }
 
+    public double getRobotSpeedRatio() {
+        return this.driveSpeedChooser.getSelected();
+    }
+
     public void periodic() {
         var positions = getModulePositions();
 
@@ -167,12 +182,6 @@ public class Drivebase extends SubsystemBase {
         SmartDashboard.putNumber("rot", rotation);
         field.setRobotPose(getRobotPose());
 
-        SmartDashboard.putNumber("module output", modules[0].getDriveOutput());
-
-        // This method will be called once per scheduler run
-        SmartDashboard.putNumber("FL Encoder", frontLeft.getEncoder());
-        SmartDashboard.putNumber("FR Encoder", frontRight.getEncoder());
-        SmartDashboard.putNumber("BR Encoder", backRight.getEncoder());
-        SmartDashboard.putNumber("BL Encoder", backLeft.getEncoder());
+        SmartDashboard.putNumber("Speed Ratio", getRobotSpeedRatio());
     }
 }
