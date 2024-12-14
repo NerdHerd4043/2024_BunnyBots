@@ -5,6 +5,8 @@
 package frc.robot;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.revrobotics.Rev2mDistanceSensor;
+import com.revrobotics.Rev2mDistanceSensor.Port;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -14,6 +16,8 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.ManipulatorConstants;
 import frc.robot.commands.Drive;
 import frc.robot.commands.RunManipulator;
+import frc.robot.commands.LowAuto.AutoOutput;
+import frc.robot.commands.LowAuto.SensorLowAutoMove;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Manipulator;
 
@@ -27,6 +31,8 @@ public class RobotContainer {
   private static XboxController driveStick = new XboxController(0);
   private static CommandXboxController c_driveStick = new CommandXboxController(0);
 
+  private Rev2mDistanceSensor distOnboard; 
+
   public RobotContainer() {
 
     drivebase.setDefaultCommand(
@@ -34,12 +40,14 @@ public class RobotContainer {
             drivebase,
             () -> getScaledXY(),
             () -> scaleRotationAxis(driveStick.getRightX())));
+    
+  distOnboard = new Rev2mDistanceSensor(Port.kOnboard);
 
     configureBindings();
   }
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return Commands.sequence(new SensorLowAutoMove(drivebase, manipulator, distOnboard), new AutoOutput(manipulator));
   }
 
   public void resetGyro() {

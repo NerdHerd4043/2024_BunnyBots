@@ -4,7 +4,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ManipulatorConstants;
 
@@ -38,10 +37,6 @@ public class Manipulator extends SubsystemBase {
         subManipulatorMotor.stopMotor();
         mainManipulatorMotor.stopMotor();
         indexMotor.stopMotor();
-    }
-
-    public boolean getBeamBreak() {
-        return !beamBreak.get();
     }
 
     @Override
