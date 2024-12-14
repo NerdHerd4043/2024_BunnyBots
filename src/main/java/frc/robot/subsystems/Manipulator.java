@@ -27,7 +27,7 @@ public class Manipulator extends SubsystemBase {
 
         subManipulatorMotor.setSmartCurrentLimit(ManipulatorConstants.subMotorCurrentLimit);
         mainManipulatorMotor.setSmartCurrentLimit(ManipulatorConstants.mainMotorCurrentLimit);
-        indexMotor.setSmartCurrentLimit(ManipulatorConstants.mainMotorCurrentLimit);
+        indexMotor.setSmartCurrentLimit(ManipulatorConstants.indexMotorCurrentLimit);
 
     }
 

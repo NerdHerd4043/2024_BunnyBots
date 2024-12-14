@@ -14,6 +14,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.ManipulatorConstants;
 import frc.robot.commands.Drive;
 import frc.robot.commands.RunManipulator;
+import frc.robot.commands.LowAuto.LowAutoMove;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Manipulator;
 
@@ -39,7 +40,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return new LowAutoMove(drivebase);
   }
 
   public void resetGyro() {
@@ -100,7 +101,7 @@ public class RobotContainer {
     // Output
     c_driveStick.rightTrigger().whileTrue(
         new RunManipulator(
-            manipulator, 0, ManipulatorConstants.mainMotorSpeed, 0));
+            manipulator, 0, ManipulatorConstants.mainMotorSpeed, -0.1));
 
     // Reverse
     c_driveStick.x().whileTrue(
