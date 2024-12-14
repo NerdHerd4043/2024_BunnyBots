@@ -179,5 +179,7 @@ public class Drivebase extends SubsystemBase {
         SmartDashboard.putNumber("y", y);
         SmartDashboard.putNumber("rot", rotation);
         field.setRobotPose(getRobotPose());
+
+        SmartDashboard.putNumber("Speed Ratio", getRobotSpeedRatio());
     }
 }
