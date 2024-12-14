@@ -92,7 +92,7 @@ public class RobotContainer {
     c_driveStick.povUp().onTrue(Commands.runOnce(gyro::reset));
 
     // Intake
-    c_driveStick.a().whileTrue(
+    c_driveStick.leftTrigger().whileTrue(
         new RunManipulator(
             manipulator, ManipulatorConstants.subMotorSpeed, ManipulatorConstants.mainMotorSpeed,
             ManipulatorConstants.indexMotorSpeed));
