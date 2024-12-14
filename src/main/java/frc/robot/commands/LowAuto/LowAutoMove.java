@@ -20,7 +20,7 @@ public class LowAutoMove extends Command {
 
     @Override
     public void execute() {
-        drivebase.robotOrientedDrive(0, 1, 0);
+        drivebase.robotOrientedDrive(0.8, 0, 0);
     }
 
     @Override
@@ -30,6 +30,6 @@ public class LowAutoMove extends Command {
 
     @Override
     public boolean isFinished() {
-        return Timer.getFPGATimestamp() >= this.startTime + 2;
+        return Timer.getFPGATimestamp() >= this.startTime + 5;
     }
 }
