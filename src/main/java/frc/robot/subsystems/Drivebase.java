@@ -30,19 +30,18 @@ public class Drivebase extends SubsystemBase {
                                                          // rotations per second.
     private final double WHEEL_DIAMETER = 0.1016; // Measured by hand
     private final double MAX_VELOCITY = NEO_FREE_SPEED * DRIVE_REDUCTION * WHEEL_DIAMETER * Math.PI; // Max velocity =
-                                                                                                     // Fastest the
-                                                                                                     // motor can spin
-                                                                                                     // (free speed)
-                                                                                                     // times the gear
-                                                                                                     // ratio times
-                                                                                                     // the
-                                                                                                     // circumference
-                                                                                                     // of
-                                                                                                     // the wheel
-                                                                                                     // (diameter
-                                                                                                     // (twice
-                                                                                                     // the radius)
-                                                                                                     // times pi).
+    // Fastest the motor can spin
+    // (free speed)
+    // times the gear
+    // ratio times
+    // the
+    // circumference
+    // of
+    // the wheel
+    // (diameter
+    // (twice
+    // the radius)
+    // times pi).
     private final double MAX_ANGULAR_VELOCITY = MAX_VELOCITY / (ModuleLocations.robotRaduius); // Max velocity applied
                                                                                                // tangentially (in a
                                                                                                // direction that causes
