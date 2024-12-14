@@ -11,13 +11,18 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.ManipulatorConstants;
 import frc.robot.commands.Drive;
+import frc.robot.commands.RunManipulator;
 import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.Manipulator;
 
 public class RobotContainer {
   private final AHRS gyro = new AHRS();
 
   private final Drivebase drivebase = new Drivebase(gyro);
+
+  private final Manipulator manipulator = new Manipulator();
 
   private static XboxController driveStick = new XboxController(0);
   private static CommandXboxController c_driveStick = new CommandXboxController(0);
@@ -67,7 +72,7 @@ public class RobotContainer {
   }
 
   private double scaleRotationAxis(double input) {
-    return deadband(squared(input), DriveConstants.deadband) * drivebase.getMaxAngleVelocity();
+    return deadband(squared(input), DriveConstants.deadband) * drivebase.getMaxAngleVelocity() * 0.6;
   }
 
   private double squared(double input) {
@@ -86,6 +91,22 @@ public class RobotContainer {
     // Gyro Reset
     c_driveStick.povUp().onTrue(Commands.runOnce(gyro::reset));
 
+    // Intake
+    c_driveStick.a().whileTrue(
+        new RunManipulator(
+            manipulator, ManipulatorConstants.subMotorSpeed, ManipulatorConstants.mainMotorSpeed,
+            ManipulatorConstants.indexMotorSpeed));
+
+    // Output
+    c_driveStick.rightTrigger().whileTrue(
+        new RunManipulator(
+            manipulator, 0, ManipulatorConstants.mainMotorSpeed, 0));
+
+    // Reverse
+    c_driveStick.x().whileTrue(
+        new RunManipulator(manipulator, -ManipulatorConstants.subMotorSpeed, -ManipulatorConstants.mainMotorSpeed, 0));
+
+    c_driveStick.y().whileTrue(new RunManipulator(manipulator, 0, 0, 1));
   }
 
 }
