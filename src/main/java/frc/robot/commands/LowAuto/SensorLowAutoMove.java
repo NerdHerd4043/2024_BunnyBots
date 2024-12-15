@@ -26,7 +26,9 @@ public class SensorLowAutoMove extends Command {
 
     @Override
     public void initialize() {
+        this.distSensor.setAutomaticMode(true);
         this.startTime = Timer.getFPGATimestamp();
+
     }
 
     @Override
@@ -39,10 +41,15 @@ public class SensorLowAutoMove extends Command {
     @Override
     public void end(boolean interrupted) {
         drivebase.robotOrientedDrive(0, 0, 0);
+        this.distSensor.setAutomaticMode(false);
     }
 
     @Override
     public boolean isFinished() {
-        return this.distSensor.getRange() > 3;
+        if (this.startTime + 15 <= Timer.getFPGATimestamp()) {
+            return true;
+        }
+
+        return this.distSensor.getRange() != -1;
     }
 }
